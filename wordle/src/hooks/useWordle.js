@@ -16,9 +16,10 @@ const useWordle = (solution) => {
 
     }
 
-    const handleKeyup = () => {
-
+    const handleKeyup = ({key}) => {
+        if
     }
+
     return {turn, currentGuess, guesses, isCorrect, handleKeyup}
  
   
