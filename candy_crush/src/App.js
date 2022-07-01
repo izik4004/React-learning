@@ -14,6 +14,17 @@ const candyColors = [
 const App = () => {
   const [currentColorArrangement, setCurrentColorArrangement] = useState([])
 
+  const checkColumnOfThree = () => {
+    for (let i = 0; i < 47; i++) {
+      const columnThree = [1, i + width, i + width * 2]
+      const decidedColor = currentColorArrangement[i]
+
+      if ( columnThree.every(square => currentColorArrangement[square] === decidedColor)) {
+        columnThree.forEach(square => currentColorArrangement[square] = '')
+      }
+    }
+  }
+
   const createBoard = () => {
     const colorArrangement = []
 
@@ -30,11 +41,28 @@ const App = () => {
     createBoard()
   }, [])
 
+  useEffect(() => {
+    const timer = setInterval(() => {
+      checkColumnOfThree()
+      setCurrentColorArrangement([...currentColorArrangement])
+    }, 100)
+    return () => clearInterval(timer)
+   
+  }, [checkColumnOfThree])
+
  console.log(currentColorArrangement)
 
+
+
   return (
-    <div className="App">
-      <h1>izik</h1>
+    <div className="app">
+      <div className="game">
+        {currentColorArrangement.map((candyColor, index) => (
+          <img src="" alt={candyColor} key={index}
+            style={{backgroundColor:candyColor}}
+          />
+        ))}
+      </div>
     </div>
   );
 }
