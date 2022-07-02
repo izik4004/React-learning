@@ -48,7 +48,7 @@ const App = () => {
     }, 100)
     return () => clearInterval(timer)
    
-  }, [checkColumnOfThree])
+  }, [checkColumnOfThree,currentColorArrangement ])
 
  console.log(currentColorArrangement)
 
