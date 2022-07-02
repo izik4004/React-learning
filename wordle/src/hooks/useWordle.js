@@ -17,7 +17,21 @@ const useWordle = (solution) => {
     }
 
     const handleKeyup = ({key}) => {
-        if
+
+        if (key === 'Backspace') {
+            setCurrentGuess((prev) => {
+                return prev.slice(0, -1)
+            })
+            return
+        }
+
+       if (/^[A-Za-z]$/.test(key)) {
+        if(currentGuess < 5) {
+            setCurrentGuess((prev) => {
+                return prev + key
+            })
+        }
+       }
     }
 
     return {turn, currentGuess, guesses, isCorrect, handleKeyup}
